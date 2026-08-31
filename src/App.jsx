@@ -47,6 +47,16 @@ import sketchguess1 from './assets/sketchguess-1.png'
 import sketchguess2 from './assets/sketchguess-2.png'
 import sketchguess3 from './assets/sketchguess-3.png'
 
+import bodyImage from './assets/body.jpg'
+import educationIcon from './assets/education.png'
+import workIcon from './assets/work.png'
+import selfIcon from './assets/self.png'
+
+import facebookIcon from './assets/fb.png'
+import instagramIcon from './assets/ig.png'
+import contactEmailIcon from './assets/email.png'
+import phoneIcon from './assets/phone.png'
+
 function App() {
 
   /* =========================
@@ -1034,6 +1044,227 @@ function App() {
         </div>
 
       )}
+
+<section className="about-section" id="about">
+
+  <div className="about-container">
+
+    {/* 1 — BODY IMAGE */}
+    <div className="about-left">
+
+      <div className="about-photo-wrapper">
+        <img
+          src={bodyImage}
+          alt="Mariel"
+          className="about-photo"
+        />
+      </div>
+
+    </div>
+
+
+    {/* 2 — ABOUT ME */}
+    <div className="about-intro">
+
+      <div className="about-title-row">
+
+        <img
+          src={selfIcon}
+          alt="About Me"
+          className="about-icon"
+        />
+
+        <h2>ABOUT ME</h2>
+
+      </div>
+
+      <p>
+        Hi! I’m Mariel, a 21-year-old based in Cagayan de Oro City
+        and currently pursuing my degree in Computer Science.
+      </p>
+
+      <p>
+        I’m a friendly, outgoing, and creative person who enjoys
+        working on projects that combine technology, design,
+        and problem-solving.
+      </p>
+
+      <p>
+        I enjoy learning new things, creating digital experiences,
+        working with data, and finding practical ways to make
+        work more organized and efficient.
+      </p>
+
+    </div>
+
+
+    {/* 3 — EDUCATION */}
+    <div className="education-block">
+
+      <div className="about-section-title">
+
+        <img
+          src={educationIcon}
+          alt="Education"
+          className="about-block-icon"
+        />
+
+        <h2>EDUCATION</h2>
+
+      </div>
+
+      <div className="timeline">
+
+        <div className="timeline-item">
+          <span className="timeline-dot"></span>
+
+          <div className="timeline-content">
+            <h3>Bachelor of Science in Computer Science</h3>
+            <p className="timeline-school">University of Science and Technology of Southern Philippines - CDO</p>
+            <p className="timeline-date">2023 – 2027</p>
+          </div>
+        </div>
+
+        <div className="timeline-item">
+          <span className="timeline-dot"></span>
+
+          <div className="timeline-content">
+            <h3>Senior High School - STEM Strand</h3>
+            <p className="timeline-school">Arellano University - Malabon</p>
+            <p className="timeline-date">2021 – 2023</p>
+          </div>
+        </div>
+
+        <div className="timeline-item">
+          <span className="timeline-dot"></span>
+
+          <div className="timeline-content">
+            <h3>Junior High School - Special Program in Journalism</h3>
+            <p className="timeline-school">Lagao National High School - GenSan</p>
+            <p className="timeline-date">2017 – 2021</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    {/* 4 — EXPERIENCE */}
+    <div className="experience-block">
+
+      <div className="about-section-title">
+
+        <img
+          src={workIcon}
+          alt="Experience"
+          className="about-block-icon"
+        />
+
+        <h2>EXPERIENCE</h2>
+
+      </div>
+
+      <div className="timeline">
+
+        <div className="timeline-item">
+          <span className="timeline-dot"></span>
+
+          <div className="timeline-content">
+            <h3>Data Analyst, Data Migrator & Front-End Developer</h3>
+            <p className="timeline-school">Wela School Systems - CDO</p>
+            <p className="timeline-date">June 2026 - Aug 2026</p>
+          </div>
+        </div>
+
+        <div className="timeline-item">
+          <span className="timeline-dot"></span>
+
+          <div className="timeline-content">
+            <h3>UI/UX Designer & Front-End Developer</h3>
+            <p className="timeline-school">USTP CDO - School Based</p>
+            <p className="timeline-date">2023 – Present</p>
+          </div>
+        </div>
+
+        <div className="timeline-item">
+          <span className="timeline-dot"></span>
+
+          <div className="timeline-content">
+            <h3>Hello World!</h3>
+            <p className="timeline-date">Aug 2023</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{/* =====================================================
+    CONTAINER FIVE — SOCIAL CONTACT
+===================================================== */}
+
+<section className="social-section" id="contact">
+  <div className="social-icons">
+
+    {/* FACEBOOK */}
+    <a
+      href="https://www.facebook.com/mariellaplap.05"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="social-icon"
+    >
+      <img
+        src={facebookIcon}
+        alt="Facebook"
+      />
+    </a>
+
+
+    {/* INSTAGRAM */}
+    <a
+      href="https://www.instagram.com/mmxlvsu/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="social-icon"
+    >
+      <img
+        src={instagramIcon}
+        alt="Instagram"
+      />
+    </a>
+
+
+    {/* EMAIL */}
+    <a
+      href="mailto:laplap.mariel05@gmail.com"
+      className="social-icon"
+    >
+      <img
+        src={contactEmailIcon}
+        alt="Email"
+      />
+    </a>
+
+
+    {/* PHONE */}
+    <a
+      href="tel:+639653765281"
+      className="social-icon"
+    >
+      <img
+        src={phoneIcon}
+        alt="Phone"
+      />
+    </a>
+
+  </div>
+
+</section>
 
     </main>
   )
