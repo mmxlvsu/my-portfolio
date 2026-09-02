@@ -875,7 +875,7 @@ function App() {
                 className="project-filter-select"
               >
                 <option value="all">
-                  By Categories
+                  All
                 </option>
 
                 <option value="design">
