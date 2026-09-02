@@ -913,7 +913,8 @@ font-weight: 600;
 ========================================================= */
 
 .project-card {
-  width: 95%;
+  width: 100%;
+
   background: white;
 
   border: 1px solid #dededb;
@@ -987,7 +988,7 @@ font-weight: 600;
 
   border-radius: 7px;
 
-  background: white;
+  background: #f3d9d9;
 
   font-size: 9px;
 
@@ -997,7 +998,7 @@ font-weight: 600;
 
   letter-spacing: 0.04em;
 
-  color: #444;
+  color: #000000;
 
   margin-bottom: 11px;
 }
@@ -1391,7 +1392,6 @@ font-weight: 600;
 /* =========================================================
    PROJECT TABLET
 ========================================================= */
-
 @media (max-width: 900px) {
 
   .projects-section {
@@ -1400,7 +1400,6 @@ font-weight: 600;
 
   .projects-header {
     flex-direction: column;
-
     align-items: flex-start;
   }
 
@@ -1409,7 +1408,7 @@ font-weight: 600;
   }
 
   .projects-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
 }

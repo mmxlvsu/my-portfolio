@@ -43,6 +43,10 @@ import capsor1 from './assets/capsor-1.png'
 import capsor2 from './assets/capsor-2.png'
 import capsor3 from './assets/capsor-3.png'
 
+import graphic1 from './assets/sushi-1.png'
+import graphic2 from './assets/sushi-2.png'
+import graphic3 from './assets/fanta-1.png'
+
 import sketchguess1 from './assets/sketchguess-1.png'
 import sketchguess2 from './assets/sketchguess-2.png'
 import sketchguess3 from './assets/sketchguess-3.png'
@@ -56,6 +60,7 @@ import facebookIcon from './assets/fb.png'
 import instagramIcon from './assets/ig.png'
 import contactEmailIcon from './assets/email.png'
 import phoneIcon from './assets/phone.png'
+
 
 function App() {
 
@@ -132,6 +137,7 @@ function App() {
 
   const projects = [
     {
+      id: 1,
       title: 'Rhode Skincare',
       category: 'Design',
       type: 'design',
@@ -142,6 +148,40 @@ function App() {
     },
 
     {
+      id: 2,
+      title: 'Sushi Promotional Poster',
+      category: 'Design',
+      type: 'design',
+      image: graphic1,
+      description:
+        'promotional poster only',
+      images: [graphic1],
+    },
+
+    {
+      id: 3,
+      title: 'Sushi Promotional Poster',
+      category: 'Design',
+      type: 'design',
+      image: graphic2,
+      description:
+        'promotional poster only',
+      images: [graphic2],
+    },
+
+    {
+      id: 4,
+      title: 'Fanta Promotional Poster',
+      category: 'Design',
+      type: 'design',
+      image: graphic3,
+      description:
+        'promotional poster only',
+      images: [graphic3],
+    },
+
+    {
+      id: 5,
       title: 'GAP Denim',
       category: 'Design',
       type: 'design',
@@ -152,6 +192,7 @@ function App() {
     },
 
     {
+      id: 6,
       title: 'Isla Verde Hotel',
       category: 'Design',
       type: 'design',
@@ -162,6 +203,7 @@ function App() {
     },
 
     {
+      id: 7,
       title: 'La-ag CDO Discovery App',
       category: 'Mobile Development',
       type: 'mobile',
@@ -172,6 +214,7 @@ function App() {
     },
 
     {
+      id: 8,
       title: 'FastPick Campus Preordering System',
       category: 'Mobile Development',
       type: 'mobile',
@@ -182,6 +225,7 @@ function App() {
     },
 
     {
+      id: 9,
       title: 'Health & Mobile Tracker App',
       category: 'Mobile Development',
       type: 'mobile',
@@ -192,6 +236,7 @@ function App() {
     },
 
     {
+      id: 10,
       title: 'AgriVision Website',
       category: 'Web Development',
       type: 'web',
@@ -202,6 +247,7 @@ function App() {
     },
 
     {
+      id: 11,
       title: 'CAPSORT Capstone Archiving System',
       category: 'Web Development',
       type: 'web',
@@ -212,6 +258,7 @@ function App() {
     },
 
     {
+      id: 12,
       title: 'SketchGuess Game',
       category: 'Web Development',
       type: 'web',
@@ -245,18 +292,34 @@ function App() {
         )
 
 
+  /* =========================
+     PROJECT PAGINATION
+     EXACTLY 4 PROJECTS PER PAGE
+  ========================= */
+
   const projectsPerPage = 4
 
-  const totalPages = Math.ceil(
-    filteredProjects.length / projectsPerPage
-  )
+  const projectPages = []
+
+  for (
+    let i = 0;
+    i < filteredProjects.length;
+    i += projectsPerPage
+  ) {
+    projectPages.push(
+      filteredProjects.slice(i, i + projectsPerPage)
+    )
+  }
+
+  const totalPages = projectPages.length
+
+  const visibleProjects =
+    projectPages[currentPage] || []
 
 
-  const visibleProjects = filteredProjects.slice(
-    currentPage * projectsPerPage,
-    currentPage * projectsPerPage + projectsPerPage
-  )
-
+  /* =========================
+     PROJECT FILTER CHANGE
+  ========================= */
 
   const changeFilter = (filter) => {
     setProjectFilter(filter)
@@ -303,7 +366,7 @@ function App() {
 
 
   /* =========================
-     PROJECT PAGINATION
+     PROJECT PAGE NAVIGATION
   ========================= */
 
   const nextPage = () => {
@@ -774,7 +837,6 @@ function App() {
 
       {/* =====================================================
           CONTAINER FOUR — PROJECTS
-          THIS IS NOW COMPLETELY SEPARATE FROM TECH STACK
       ===================================================== */}
 
       <section
@@ -807,17 +869,30 @@ function App() {
 
             <div className="project-filter">
 
-  <select
-    value={projectFilter}
-    onChange={(e) => changeFilter(e.target.value)}
-    className="project-filter-select"
-  >
-    <option value="all">By Categories</option>
-    <option value="design">Designs</option>
-    <option value="mobile">Mobile Dev</option>
-    <option value="web">Web Dev</option>
-  </select>
-</div>
+              <select
+                value={projectFilter}
+                onChange={(e) => changeFilter(e.target.value)}
+                className="project-filter-select"
+              >
+                <option value="all">
+                  By Categories
+                </option>
+
+                <option value="design">
+                  Designs
+                </option>
+
+                <option value="mobile">
+                  Mobile Dev
+                </option>
+
+                <option value="web">
+                  Web Dev
+                </option>
+
+              </select>
+
+            </div>
 
           </div>
 
@@ -830,7 +905,7 @@ function App() {
 
               <article
                 className="project-card"
-                key={project.title}
+                key={project.id}
               >
 
                 {/* PROJECT IMAGE */}
@@ -866,16 +941,16 @@ function App() {
                   {/* VIEW DETAILS */}
 
                   <button
-  className="view-details"
-  onClick={() => openProject(project)}
->
-  View Details
+                    className="view-details"
+                    onClick={() => openProject(project)}
+                  >
+                    View Details
 
-  <img
-    src={expandIcon}
-    alt=""
-  />
-</button>
+                    <img
+                      src={expandIcon}
+                      alt=""
+                    />
+                  </button>
 
                 </div>
 
@@ -981,6 +1056,7 @@ function App() {
                     />
                   </button>
 
+
                   <button
                     className="modal-arrow modal-arrow-right"
                     onClick={nextImage}
@@ -1045,226 +1121,328 @@ function App() {
 
       )}
 
-<section className="about-section" id="about">
 
-  <div className="about-container">
+      {/* =====================================================
+          CONTAINER FIVE — ABOUT
+      ===================================================== */}
 
-    {/* 1 — BODY IMAGE */}
-    <div className="about-left">
+      <section
+        className="about-section"
+        id="about"
+      >
 
-      <div className="about-photo-wrapper">
-        <img
-          src={bodyImage}
-          alt="Mariel"
-          className="about-photo"
-        />
-      </div>
+        <div className="about-container">
 
-    </div>
+          {/* BODY IMAGE */}
 
+          <div className="about-left">
 
-    {/* 2 — ABOUT ME */}
-    <div className="about-intro">
+            <div className="about-photo-wrapper">
 
-      <div className="about-title-row">
+              <img
+                src={bodyImage}
+                alt="Mariel"
+                className="about-photo"
+              />
 
-        <img
-          src={selfIcon}
-          alt="About Me"
-          className="about-icon"
-        />
+            </div>
 
-        <h2>ABOUT ME</h2>
-
-      </div>
-
-      <p>
-        Hi! I’m Mariel, a 21-year-old based in Cagayan de Oro City
-        and currently pursuing my degree in Computer Science.
-      </p>
-
-      <p>
-        I’m a friendly, outgoing, and creative person who enjoys
-        working on projects that combine technology, design,
-        and problem-solving.
-      </p>
-
-      <p>
-        I enjoy learning new things, creating digital experiences,
-        working with data, and finding practical ways to make
-        work more organized and efficient.
-      </p>
-
-    </div>
-
-
-    {/* 3 — EDUCATION */}
-    <div className="education-block">
-
-      <div className="about-section-title">
-
-        <img
-          src={educationIcon}
-          alt="Education"
-          className="about-block-icon"
-        />
-
-        <h2>EDUCATION</h2>
-
-      </div>
-
-      <div className="timeline">
-
-        <div className="timeline-item">
-          <span className="timeline-dot"></span>
-
-          <div className="timeline-content">
-            <h3>Bachelor of Science in Computer Science</h3>
-            <p className="timeline-school">University of Science and Technology of Southern Philippines - CDO</p>
-            <p className="timeline-date">2023 – 2027</p>
           </div>
+
+
+          {/* ABOUT ME */}
+
+          <div className="about-intro">
+
+            <div className="about-title-row">
+
+              <img
+                src={selfIcon}
+                alt="About Me"
+                className="about-icon"
+              />
+
+              <h2>
+                ABOUT ME
+              </h2>
+
+            </div>
+
+            <p>
+              Hi! I’m Mariel, a 21-year-old based in Cagayan de Oro City
+              and currently pursuing my degree in Computer Science.
+            </p>
+
+            <p>
+              I’m a friendly, outgoing, and creative person who enjoys
+              working on projects that combine technology, design,
+              and problem-solving.
+            </p>
+
+            <p>
+              I enjoy learning new things, creating digital experiences,
+              working with data, and finding practical ways to make
+              work more organized and efficient.
+            </p>
+
+          </div>
+
+
+          {/* EDUCATION */}
+
+          <div className="education-block">
+
+            <div className="about-section-title">
+
+              <img
+                src={educationIcon}
+                alt="Education"
+                className="about-block-icon"
+              />
+
+              <h2>
+                EDUCATION
+              </h2>
+
+            </div>
+
+            <div className="timeline">
+
+              <div className="timeline-item">
+
+                <span className="timeline-dot"></span>
+
+                <div className="timeline-content">
+
+                  <h3>
+                    Bachelor of Science in Computer Science
+                  </h3>
+
+                  <p className="timeline-school">
+                    University of Science and Technology of Southern Philippines - CDO
+                  </p>
+
+                  <p className="timeline-date">
+                    2023 – 2027
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div className="timeline-item">
+
+                <span className="timeline-dot"></span>
+
+                <div className="timeline-content">
+
+                  <h3>
+                    Senior High School - STEM Strand
+                  </h3>
+
+                  <p className="timeline-school">
+                    Arellano University - Malabon
+                  </p>
+
+                  <p className="timeline-date">
+                    2021 – 2023
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div className="timeline-item">
+
+                <span className="timeline-dot"></span>
+
+                <div className="timeline-content">
+
+                  <h3>
+                    Junior High School - Special Program in Journalism
+                  </h3>
+
+                  <p className="timeline-school">
+                    Lagao National High School - GenSan
+                  </p>
+
+                  <p className="timeline-date">
+                    2017 – 2021
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          {/* EXPERIENCE */}
+
+          <div className="experience-block">
+
+            <div className="about-section-title">
+
+              <img
+                src={workIcon}
+                alt="Experience"
+                className="about-block-icon"
+              />
+
+              <h2>
+                EXPERIENCE
+              </h2>
+
+            </div>
+
+            <div className="timeline">
+
+              <div className="timeline-item">
+
+                <span className="timeline-dot"></span>
+
+                <div className="timeline-content">
+
+                  <h3>
+                    Data Analyst, Data Migrator & Front-End Developer
+                  </h3>
+
+                  <p className="timeline-school">
+                    Wela School Systems - CDO
+                  </p>
+
+                  <p className="timeline-date">
+                    June 2026 - Aug 2026
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div className="timeline-item">
+
+                <span className="timeline-dot"></span>
+
+                <div className="timeline-content">
+
+                  <h3>
+                    UI/UX Designer & Front-End Developer
+                  </h3>
+
+                  <p className="timeline-school">
+                    USTP CDO - School Based
+                  </p>
+
+                  <p className="timeline-date">
+                    2023 – Present
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div className="timeline-item">
+
+                <span className="timeline-dot"></span>
+
+                <div className="timeline-content">
+
+                  <h3>
+                    Hello World!
+                  </h3>
+
+                  <p className="timeline-date">
+                    Aug 2023
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
 
-        <div className="timeline-item">
-          <span className="timeline-dot"></span>
+      </section>
 
-          <div className="timeline-content">
-            <h3>Senior High School - STEM Strand</h3>
-            <p className="timeline-school">Arellano University - Malabon</p>
-            <p className="timeline-date">2021 – 2023</p>
-          </div>
+
+      {/* =====================================================
+          CONTAINER SIX — SOCIAL CONTACT
+      ===================================================== */}
+
+      <section
+        className="social-section"
+        id="contact"
+      >
+
+        <div className="social-icons">
+
+          {/* FACEBOOK */}
+
+          <a
+            href="https://www.facebook.com/mariellaplap.05"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+          >
+            <img
+              src={facebookIcon}
+              alt="Facebook"
+            />
+          </a>
+
+
+          {/* INSTAGRAM */}
+
+          <a
+            href="https://www.instagram.com/mmxlvsu/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+          >
+            <img
+              src={instagramIcon}
+              alt="Instagram"
+            />
+          </a>
+
+
+          {/* EMAIL */}
+
+          <a
+            href="mailto:laplap.mariel05@gmail.com"
+            className="social-icon"
+          >
+            <img
+              src={contactEmailIcon}
+              alt="Email"
+            />
+          </a>
+
+
+          {/* PHONE */}
+
+          <a
+            href="tel:+639653765281"
+            className="social-icon"
+          >
+            <img
+              src={phoneIcon}
+              alt="Phone"
+            />
+          </a>
+
         </div>
 
-        <div className="timeline-item">
-          <span className="timeline-dot"></span>
-
-          <div className="timeline-content">
-            <h3>Junior High School - Special Program in Journalism</h3>
-            <p className="timeline-school">Lagao National High School - GenSan</p>
-            <p className="timeline-date">2017 – 2021</p>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    {/* 4 — EXPERIENCE */}
-    <div className="experience-block">
-
-      <div className="about-section-title">
-
-        <img
-          src={workIcon}
-          alt="Experience"
-          className="about-block-icon"
-        />
-
-        <h2>EXPERIENCE</h2>
-
-      </div>
-
-      <div className="timeline">
-
-        <div className="timeline-item">
-          <span className="timeline-dot"></span>
-
-          <div className="timeline-content">
-            <h3>Data Analyst, Data Migrator & Front-End Developer</h3>
-            <p className="timeline-school">Wela School Systems - CDO</p>
-            <p className="timeline-date">June 2026 - Aug 2026</p>
-          </div>
-        </div>
-
-        <div className="timeline-item">
-          <span className="timeline-dot"></span>
-
-          <div className="timeline-content">
-            <h3>UI/UX Designer & Front-End Developer</h3>
-            <p className="timeline-school">USTP CDO - School Based</p>
-            <p className="timeline-date">2023 – Present</p>
-          </div>
-        </div>
-
-        <div className="timeline-item">
-          <span className="timeline-dot"></span>
-
-          <div className="timeline-content">
-            <h3>Hello World!</h3>
-            <p className="timeline-date">Aug 2023</p>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-{/* =====================================================
-    CONTAINER FIVE — SOCIAL CONTACT
-===================================================== */}
-
-<section className="social-section" id="contact">
-  <div className="social-icons">
-
-    {/* FACEBOOK */}
-    <a
-      href="https://www.facebook.com/mariellaplap.05"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="social-icon"
-    >
-      <img
-        src={facebookIcon}
-        alt="Facebook"
-      />
-    </a>
-
-
-    {/* INSTAGRAM */}
-    <a
-      href="https://www.instagram.com/mmxlvsu/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="social-icon"
-    >
-      <img
-        src={instagramIcon}
-        alt="Instagram"
-      />
-    </a>
-
-
-    {/* EMAIL */}
-    <a
-      href="mailto:laplap.mariel05@gmail.com"
-      className="social-icon"
-    >
-      <img
-        src={contactEmailIcon}
-        alt="Email"
-      />
-    </a>
-
-
-    {/* PHONE */}
-    <a
-      href="tel:+639653765281"
-      className="social-icon"
-    >
-      <img
-        src={phoneIcon}
-        alt="Phone"
-      />
-    </a>
-
-  </div>
-
-</section>
+      </section>
 
     </main>
   )
